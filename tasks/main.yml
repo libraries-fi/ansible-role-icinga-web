@@ -1,0 +1,10 @@
+---
+# tasks file for kifi.icinga-web
+- name: Create static configuration
+  synchronize: src=icinga-web dest=/etc/
+  
+- name: Create templated configuration
+  template: src=icinga-web/conf.d/{{item}}.j2 dest=/etc/icinga-web/conf.d/{{item}}
+  with_items:
+      - database-ido.xml
+      - database-web.xml
